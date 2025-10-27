@@ -1,18 +1,21 @@
-export type courseItem = {
+export type CourseItem = {
     itemName: string;
     description: string;
     category: string | null;
     price: number;
-    intensity: string;
     image: string | null;
-    ingredients: string[];
 };
 
 export type RootStackParamList = {
     FirstAidScreen: undefined;
-    HomeScreen: undefined;
     ManageScreen: { 
-        cafeItem: courseItem[];
-        setItems: React.Dispatch<React.SetStateAction<courseItem[]>>;
+        courseItem: CourseItem[];
+        setItems: React.Dispatch<React.SetStateAction<CourseItem[]>>;
    };
+   LandscapingScreen: undefined;
+   SewingScreen: undefined;
+   LifeSkillsScreen: undefined;
+   FeesCalculatorScreen: undefined;
 };
+
+

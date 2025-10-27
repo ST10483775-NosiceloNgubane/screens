@@ -10,24 +10,26 @@ import {
   Alert,
 } from "react-native";
 
+const courses = {
+  "First aid (R1500)": 1500,
+  "Sewing (R1500)": 1500,
+  "Landscaping (R1500)": 1500,
+  "Life skills (R1500)": 1500,
+  "Child minding (R750)": 750,
+  "Cooking (R750)": 750,
+  "Garden maintenance (R750)": 750,
+};
+
+type CourseKey = keyof typeof courses;
+
 const CourseFeeCalculator = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
-  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const [selectedCourses, setSelectedCourses] = useState<CourseKey[]>([]);
   const [total, setTotal] = useState<number | null>(null);
 
-  const courses = {
-    "First aid (R1500)": 1500,
-    "Sewing (R1500)": 1500,
-    "Landscaping (R1500)": 1500,
-    "Life skills (R1500)": 1500,
-    "Child minding (R750)": 750,
-    "Cooking (R750)": 750,
-    "Garden maintenance (R750)": 750,
-  };
-
-  const toggleCourse = (course: string) => {
+  const toggleCourse = (course: CourseKey) => {
     setSelectedCourses((prev) =>
       prev.includes(course)
         ? prev.filter((c) => c !== course)
@@ -120,7 +122,7 @@ const CourseFeeCalculator = () => {
         <View style={styles.courseRow}>
           <View style={styles.courseColumn}>
             <Text style={styles.columnTitle}>6-month courses:</Text>
-            {Object.keys(courses)
+            {(Object.keys(courses) as CourseKey[])
               .slice(0, 4)
               .map((course) => (
                 <TouchableOpacity
@@ -138,7 +140,7 @@ const CourseFeeCalculator = () => {
 
           <View style={styles.courseColumn}>
             <Text style={styles.columnTitle}>6-week short courses:</Text>
-            {Object.keys(courses)
+            {(Object.keys(courses) as CourseKey[])
               .slice(4)
               .map((course) => (
                 <TouchableOpacity
